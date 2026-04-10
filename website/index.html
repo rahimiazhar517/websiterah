@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAHIXUS | Carbon Capture & Storage Technology</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc;
+            scroll-behavior: smooth;
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Fade-in Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body x-data="{ isScrolled: false, mobileMenuOpen: false }" @scroll.window="isScrolled = (window.pageYOffset > 50)">
+
+    <!-- NAVBAR -->
+    <header 
+        :class="isScrolled ? 'bg-white shadow-md py-3' : 'bg-transparent py-6'"
+        class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 md:px-8 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center gap-2 cursor-pointer group">
+                <div :class="isScrolled ? 'bg-teal-500' : 'bg-white'" class="w-10 h-10 rounded-xl flex items-center justify-center transition-colors duration-300">
+                    <svg class="w-6 h-6" :class="isScrolled ? 'text-white' : 'text-teal-600'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg>
+                </div>
+                <span :class="isScrolled ? 'text-blue-900' : 'text-white'" class="text-2xl font-bold tracking-tight transition-colors duration-300">
+                    RAHIXUS
+                </span>
+            </div>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden lg:flex items-center gap-8">
+                <template x-for="link in ['CCUS', 'Flue Gas Treatment', 'Solutions', 'Knowledge', 'Company', 'Resources', 'Contact']">
+                    <a :href="'#' + link.toLowerCase().replace(/\s+/g, '-')" 
+                       :class="isScrolled ? 'text-slate-600 hover:text-teal-500' : 'text-slate-200 hover:text-white'"
+                       class="text-sm font-medium transition-colors relative group">
+                        <span x-text="link"></span>
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-teal-400 transition-all group-hover:w-full"></span>
+                    </a>
+                </template>
+            </nav>
+
+            <!-- Actions -->
+            <div class="flex items-center gap-4">
+                <button class="p-2.5 rounded-full bg-teal-500 text-white hover:bg-teal-600 transition-transform hover:scale-110 shadow-lg">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </button>
+                <button @click="mobileMenuOpen = !mobileMenuOpen" class="lg:hidden p-2 rounded-lg" :class="isScrolled ? 'text-blue-900' : 'text-white'">
+                    <svg x-show="!mobileMenuOpen" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    <svg x-show="mobileMenuOpen" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div x-show="mobileMenuOpen" x-transition class="lg:hidden absolute top-full left-0 right-0 bg-white shadow-xl border-t border-slate-100">
+            <div class="px-4 py-6 flex flex-col gap-4">
+                <template x-for="link in ['CCUS', 'Flue Gas Treatment', 'Solutions', 'Knowledge', 'Company', 'Resources', 'Contact']">
+                    <a :href="'#' + link.toLowerCase().replace(/\s+/g, '-')" @click="mobileMenuOpen = false" class="text-slate-600 font-medium hover:text-teal-500 transition-colors" x-text="link"></a>
+                </template>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative min-h-screen flex flex-col justify-center pt-24 overflow-hidden">
+        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&q=80')"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-900/95 via-blue-900/80 to-blue-800/40"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 md:px-8 w-full flex-1 flex flex-col justify-center mt-12 md:mt-0">
+            <div class="max-w-3xl reveal active">
+                <div class="inline-block px-4 py-1.5 rounded-full bg-teal-500/20 text-teal-300 font-medium text-sm mb-6 border border-teal-500/30 backdrop-blur-sm">
+                    Innovating Clean Energy Solutions
+                </div>
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
+                    Carbon Capture, <br class="hidden md:block"/>Utilization and Storage <span class="text-teal-400">Technology</span>
+                </h1>
+                <p class="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl leading-relaxed">
+                    Shaping the future of net-zero industry and efficiently realizing the vision of carbon neutrality through advanced engineering.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <button class="bg-teal-500 hover:bg-teal-400 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 shadow-lg shadow-teal-500/30 hover:-translate-y-1">
+                        Discover Our Technology
+                    </button>
+                    <button class="bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 backdrop-blur-md border border-white/20">
+                        Talk to an Expert
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Scroll -->
+        <div class="relative z-20 w-full mt-16 pb-12 reveal active" style="transition-delay: 200ms">
+            <div class="max-w-7xl mx-auto px-4 md:px-8">
+                <div class="flex overflow-x-auto no-scrollbar gap-6 snap-x snap-mandatory pb-8 pt-4 md:justify-center">
+                    <!-- Feature Circle -->
+                    <div class="snap-center shrink-0 w-44 h-44 md:w-52 md:h-52 rounded-full bg-teal-600/90 hover:bg-teal-500 text-white flex flex-col items-center justify-center p-6 text-center cursor-pointer transition-all duration-500 border border-teal-400/30 backdrop-blur-md hover:scale-105 group shadow-xl">
+                        <svg class="w-8 h-8 mb-3 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                        <span class="font-medium text-sm md:text-base leading-snug">Carbon Capture Solvent</span>
+                    </div>
+                    <div class="snap-center shrink-0 w-44 h-44 md:w-52 md:h-52 rounded-full bg-teal-600/90 hover:bg-teal-500 text-white flex flex-col items-center justify-center p-6 text-center cursor-pointer transition-all duration-500 border border-teal-400/30 backdrop-blur-md hover:scale-105 group shadow-xl">
+                        <svg class="w-8 h-8 mb-3 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
+                        <span class="font-medium text-sm md:text-base leading-snug">Green Energy Design</span>
+                    </div>
+                    <div class="snap-center shrink-0 w-44 h-44 md:w-52 md:h-52 rounded-full bg-teal-600/90 hover:bg-teal-500 text-white flex flex-col items-center justify-center p-6 text-center cursor-pointer transition-all duration-500 border border-teal-400/30 backdrop-blur-md hover:scale-105 group shadow-xl">
+                        <svg class="w-8 h-8 mb-3 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                        <span class="font-medium text-sm md:text-base leading-snug">Customized Services</span>
+                    </div>
+                    <div class="snap-center shrink-0 w-44 h-44 md:w-52 md:h-52 rounded-full bg-teal-600/90 hover:bg-teal-500 text-white flex flex-col items-center justify-center p-6 text-center cursor-pointer transition-all duration-500 border border-teal-400/30 backdrop-blur-md hover:scale-105 group shadow-xl">
+                        <svg class="w-8 h-8 mb-3 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                        <span class="font-medium text-sm md:text-base leading-snug">CO₂ Purification</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- APPLICATION CASES -->
+    <section id="solutions" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 md:px-8">
+            <div class="flex flex-col items-center text-center mb-16 reveal">
+                <span class="text-teal-600 font-semibold uppercase tracking-wider text-sm mb-2">Proven Track Record</span>
+                <h2 class="text-3xl md:text-5xl font-bold text-blue-900 mb-6">RAHIXUS CCUS Application Cases</h2>
+                <div class="w-24 h-1 bg-teal-500 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+                <!-- Case Card -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 group border border-slate-100 reveal">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&q=80" class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110" alt="Case">
+                        <div class="absolute top-4 right-4 bg-white/90 text-blue-900 text-xs font-bold px-3 py-1 rounded-full shadow-sm">Active</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-blue-900 mb-3 group-hover:text-teal-600">Ship-based CCUS</h3>
+                        <p class="text-slate-600 text-sm mb-4">Maritime carbon reduction solutions for commercial vessels.</p>
+                        <div class="pt-4 border-t border-slate-100 mt-auto text-sm text-teal-700 font-medium">Compact Design, Saltwater Proof</div>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 group border border-slate-100 reveal" style="transition-delay: 100ms">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80" class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110" alt="Case">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-blue-900 mb-3 group-hover:text-teal-600">Cement CCUS</h3>
+                        <p class="text-slate-600 text-sm mb-4">Capturing kiln emissions for carbon-cured concrete production.</p>
+                        <div class="pt-4 border-t border-slate-100 mt-auto text-sm text-teal-700 font-medium">Material Recycling, Large Scale</div>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 group border border-slate-100 reveal" style="transition-delay: 200ms">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&q=80" class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110" alt="Case">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-blue-900 mb-3 group-hover:text-teal-600">Steel Converter</h3>
+                        <p class="text-slate-600 text-sm mb-4">Extracting CO₂ from extreme heat industrial exhaust.</p>
+                        <div class="pt-4 border-t border-slate-100 mt-auto text-sm text-teal-700 font-medium">Heat Recovery, Efficiency</div>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 group border border-slate-100 reveal" style="transition-delay: 300ms">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1563906267088-b029e7101114?auto=format&fit=crop&q=80" class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110" alt="Case">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-blue-900 mb-3 group-hover:text-teal-600">Carbon-Nitrogen</h3>
+                        <p class="text-slate-600 text-sm mb-4">Simultaneous capture for advanced agricultural use.</p>
+                        <div class="pt-4 border-t border-slate-100 mt-auto text-sm text-teal-700 font-medium">Dual-Capture, High Purity</div>
+                    </div>
+                </div>
+                <!-- Card 5 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 group border border-slate-100 reveal" style="transition-delay: 400ms">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80" class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110" alt="Case">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-blue-900 mb-3 group-hover:text-teal-600">Building Materials</h3>
+                        <p class="text-slate-600 text-sm mb-4">Mineralization for permanent sequestration in concrete.</p>
+                        <div class="pt-4 border-t border-slate-100 mt-auto text-sm text-teal-700 font-medium">Green Build, Permanent</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-blue-950 text-slate-300 py-16 border-t-4 border-teal-500">
+        <div class="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-4 gap-12">
+            <div>
+                <div class="flex items-center gap-2 mb-6">
+                    <div class="w-8 h-8 rounded-lg bg-teal-500 flex items-center justify-center font-bold text-white">R</div>
+                    <span class="text-2xl font-bold text-white">RAHIXUS</span>
+                </div>
+                <p class="text-sm text-slate-400">Pioneering net-zero industry through advanced engineering and storage tech.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-4">Solutions</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-teal-400">CCUS Tech</a></li>
+                    <li><a href="#" class="hover:text-teal-400">Flue Gas Treatment</a></li>
+                    <li><a href="#" class="hover:text-teal-400">CO₂ Recycling</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-4">Company</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-teal-400">About Us</a></li>
+                    <li><a href="#" class="hover:text-teal-400">Careers</a></li>
+                    <li><a href="#" class="hover:text-teal-400">Knowledge Hub</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-4">Connect</h4>
+                <p class="text-sm">info@rahixus.energy</p>
+                <p class="text-sm mt-2">+1 (800) 555-CCUS</p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 md:px-8 mt-12 pt-8 border-t border-white/10 text-xs text-center md:text-left flex flex-col md:flex-row justify-between">
+            <p>&copy; 2024 RAHIXUS Clean Energy Technology Co. All rights reserved.</p>
+            <div class="flex gap-4 mt-4 md:mt-0">
+                <a href="#">Privacy</a> <a href="#">Terms</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FLOAT BUTTON -->
+    <button class="fixed bottom-6 right-6 z-50 bg-teal-500 text-white p-4 rounded-full shadow-2xl hover:bg-teal-600 hover:scale-110 transition-all duration-300 group">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+    </button>
+
+    <script>
+        // Scroll Reveal Animation
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

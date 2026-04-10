@@ -1,67 +1,92 @@
 <!DOCTYPE html>
-<html lang="ms">
+<html lang="ms" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Moden - Deep Blue & Energy Yellow</title>
+    <!-- Kemas kini viewport untuk menyokong peranti moden (iPhone notch dll) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Voltake Energy Services | Profesional & Inovatif</title>
     
-    <!-- Google Fonts: Poppins & Open Sans -->
+    <!-- ========================================== -->
+    <!-- META TAGS UNTUK WEB APP (iOS & ANDROID)    -->
+    <!-- ========================================== -->
+    <!-- Android / Chrome -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#0B3C5D">
+    <meta name="application-name" content="Voltake">
+    
+    <!-- iOS / Safari (iPhone/iPad) -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Voltake">
+    <!-- Ikon Aplikasi untuk Home Screen -->
+    <link rel="apple-touch-icon" href="https://i.postimg.cc/PxKgVPty/image.png">
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/PxKgVPty/image.png">
+    <!-- ========================================== -->
+    
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <style>
-        :root {
-            --primary: #0B3C5D;
-            --accent: #F5A623;
-            --secondary: #051c2c;
-            --neutral-bg: #F9FAFB;
-            --border-color: #E5E7EB;
-            --text-main: #4B5563; /* Gray-600 approx */
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0B3C5D',
+                        accent: '#F5A623',
+                    },
+                    fontFamily: {
+                        heading: ['Poppins', 'sans-serif'],
+                        body: ['Open Sans', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(0,0,0,0.08)',
+                        'premium': '0 20px 50px rgba(0,0,0,0.1)',
+                    },
+                    animation: {
+                        'marquee': 'marquee 25s linear infinite',
+                    },
+                    keyframes: {
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        }
+                    }
+                }
+            }
         }
+    </script>
 
+    <style>
+        /* Gaya Khas & Utiliti */
         body {
             font-family: 'Open Sans', sans-serif;
-            color: var(--text-main);
-            background-color: white;
+            color: #333;
         }
-
-        h1, h2, h3, h4, .font-poppins {
+        
+        h1, h2, h3, h4, h5, h6, .font-heading {
             font-family: 'Poppins', sans-serif;
-            font-weight: 700;
         }
 
-        .bg-primary { background-color: var(--primary); }
-        .bg-accent { background-color: var(--accent); }
-        .bg-secondary { background-color: var(--secondary); }
-        .bg-neutral-light { background-color: var(--neutral-bg); }
-        .text-primary { color: var(--primary); }
-        .text-accent { color: var(--accent); }
-        
-        .border-custom { border-color: var(--border-color); }
-
-        /* Custom UI Elements */
-        .rounded-custom { border-radius: 12px; }
-        
-        .shadow-soft {
-            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.08);
-        }
-        
-        .shadow-premium {
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        /* Status Hover Dropdown */
+        .dropdown:hover .dropdown-menu {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        .transition-standard {
-            transition: all 0.3s ease-in-out;
+        /* Transisi Menu Mudah Alih */
+        .mobile-menu-active {
+            transform: translateX(0) !important;
         }
 
-        /* Animation Styles */
+        /* Utiliti Animasi Fade-up */
         .fade-up-element {
             opacity: 0;
             transform: translateY(40px);
@@ -72,274 +97,497 @@
             opacity: 1;
             transform: translateY(0);
         }
-
-        .btn-accent {
-            background-color: var(--accent);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 12px;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.3s ease-in-out;
+        
+        /* Status Skrol Navbar */
+        .nav-scrolled {
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        .nav-scrolled .nav-link {
+            color: #0B3C5D;
+        }
+        .nav-scrolled .logo-text {
+            color: #0B3C5D;
+        }
+        
+        /* Lapisan Atas Hero */
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(11, 60, 93, 0.6), rgba(0, 0, 0, 0.5));
+        }
+        
+        /* Corak Latar Belakang Intro */
+        .bg-pattern {
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 24px 24px;
         }
 
-        .btn-accent:hover {
-            filter: brightness(1.1);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(245, 166, 35, 0.3);
+        /* Gaya Khusus Untuk Profil Marcus (Konsep Baru) */
+        .profile-shape {
+            mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path d="M44.7,-76.4C58.1,-69.2,69.2,-58.1,76.4,-44.7C83.7,-31.3,87.1,-15.7,87.1,0C87.1,15.7,83.7,31.3,76.4,44.7C69.2,58.1,58.1,69.2,44.7,76.4C31.3,83.7,15.7,87.1,0,87.1C-15.7,87.1,-31.3,83.7,-44.7,76.4C-58.1,69.2,-69.2,58.1,-76.4,44.7C-83.7,31.3,-87.1,15.7,-87.1,0C-87.1,-15.7,-83.7,-31.3,-76.4,-44.7C-69.2,-58.1,-58.1,-69.2,-44.7,-76.4C-31.3,-83.7,-15.7,-87.1,0,-87.1C15.7,-87.1,31.3,-83.7,44.7,-76.4Z" transform="translate(100 100)" /></svg>');
+            mask-size: contain;
+            mask-repeat: no-repeat;
+            mask-position: center;
         }
 
-        nav a:hover {
-            color: var(--accent);
+        /* Menghilangkan scrollbar pada ticker */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
     </style>
 </head>
-<body class="overflow-x-hidden">
+<body class="bg-gray-50 antialiased overflow-x-hidden">
 
-    <!-- Navbar -->
-    <nav class="bg-primary text-white py-4 px-6 sticky top-0 z-50 shadow-md">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <i class="ph ph-lightning text-accent text-3xl"></i>
-                <span class="text-xl font-bold font-poppins tracking-tight">TECHBLOG</span>
+    <!-- 1. HEADER / NAVBAR -->
+    <header id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-2 group">
+                    <i class="ph ph-lightning text-3xl text-accent group-hover:scale-110 transition-transform duration-300"></i>
+                    <span class="logo-text text-2xl font-bold font-heading text-white tracking-wide transition-colors duration-300">VOLTAKE</span>
+                </a>
+
+                <!-- Menu Desktop -->
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="/" class="nav-link text-white/90 hover:text-accent font-medium transition-colors duration-300">Utama</a>
+                    
+                    <!-- Dropdown -->
+                    <div class="relative group dropdown py-2">
+                        <button class="nav-link text-white/90 hover:text-accent font-medium transition-colors duration-300 flex items-center gap-1">
+                            Tentang Kami <i class="ph ph-caret-down text-sm"></i>
+                        </button>
+                        <div class="dropdown-menu absolute left-0 top-full mt-0 w-48 bg-white rounded-lg shadow-soft py-2 opacity-0 translate-y-2 hidden transition-all duration-300 z-50 border border-gray-100">
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors">Sejarah Kami</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors">Kepimpinan</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors">Kelestarian</a>
+                        </div>
+                    </div>
+
+                    <a href="#" class="nav-link text-white/90 hover:text-accent font-medium transition-colors duration-300">Projek</a>
+                    <a href=" " class="nav-link text-white/90 hover:text-accent font-medium transition-colors duration-300">BLOG</a>
+                    <a href="#" class="nav-link text-white/90 hover:text-accent font-medium transition-colors duration-300">Berita</a>
+                    <a href="#" class="nav-link text-white/90 hover:text-accent font-medium transition-colors duration-300">Kerjaya</a>
+                    <a href="#" class="nav-link text-white/90 hover:text-accent font-medium transition-colors duration-300">Hubungi</a>
+                </nav>
+
+                <!-- Butang CTA -->
+                <div class="hidden md:block">
+                    <a href="https://wa.me/60123456789" target="_blank" class="bg-accent text-primary font-heading font-semibold px-6 py-2.5 rounded-lg hover:bg-yellow-400 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 inline-block">
+                        Hubungi Kami
+                    </a>
+                </div>
+
+                <!-- Butang Menu Mudah Alih -->
+                <button id="mobile-menu-btn" class="md:hidden text-white nav-link text-2xl focus:outline-none">
+                    <i class="ph ph-list"></i>
+                </button>
             </div>
-            <div class="hidden md:flex gap-8 font-medium">
-                <a href="#" class="transition-standard">Utama</a>
-                <a href="#" class="transition-standard">Artikel</a>
-                <a href="#" class="transition-standard">Kategori</a>
-                <a href="#" class="transition-standard">Tentang Kami</a>
-            </div>
-            <button class="bg-accent text-white px-5 py-2 rounded-xl font-semibold transition-standard hover:scale-105">
-                Langgan
-            </button>
         </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <header class="relative bg-primary text-white py-20 px-6 overflow-hidden">
-        <!-- Decorative Circle -->
-        <div class="absolute -top-24 -right-24 w-96 h-96 bg-white opacity-5 rounded-full"></div>
-        
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
-            <div class="fade-up-element">
-                <span class="inline-block bg-accent text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-widest text-secondary">Terbaharu</span>
-                <h1 class="text-4xl md:text-6xl mb-6 leading-tight">Meneroka Dunia Teknologi Masa Hadapan.</h1>
-                <p class="text-lg opacity-80 mb-8 font-light max-w-lg">
-                    Dapatkan analisis mendalam mengenai AI, pembangunan web, dan trend gajet terkini setiap minggu secara percuma.
-                </p>
-                <div class="flex flex-wrap gap-4">
-                    <a href="#articles" class="btn-accent">
-                        Baca Sekarang
-                        <i class="ph ph-arrow-right"></i>
-                    </a>
-                    <a href="#" class="border border-white/30 px-6 py-3 rounded-xl font-semibold hover:bg-white hover:text-primary transition-standard">
-                        Lihat Arkib
-                    </a>
-                </div>
-            </div>
-            <div class="hidden md:block fade-up-element">
-                <div class="rounded-xl overflow-hidden shadow-premium transform rotate-2">
-                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80" alt="Imej Laptop" class="w-full h-full object-cover">
-                </div>
-            </div>
+        <!-- Lapisan Menu Mudah Alih -->
+        <div id="mobile-menu" class="fixed inset-y-0 right-0 w-64 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out z-50 md:hidden flex flex-col pt-20 px-6">
+            <button id="close-menu-btn" class="absolute top-6 right-6 text-2xl text-gray-600">
+                <i class="ph ph-x"></i>
+            </button>
+            <a href="/" class="py-3 border-b border-gray-100 font-medium text-primary">Utama</a>
+            <a href="#" class="py-3 border-b border-gray-100 font-medium text-primary">Tentang Kami</a>
+            <a href="#" class="py-3 border-b border-gray-100 font-medium text-primary">Projek</a>
+            <a href=" " class="py-3 border-b border-gray-100 font-medium text-primary">BLOG</a>
+            <a href="#" class="py-3 border-b border-gray-100 font-medium text-primary">Berita</a>
+            <a href="#" class="py-3 border-b border-gray-100 font-medium text-primary">Kerjaya</a>
+            <a href="#" class="py-3 border-b border-gray-100 font-medium text-primary">Hubungi</a>
+            <a href="https://wa.me/60123456789" target="_blank" class="mt-6 bg-accent text-primary text-center font-heading font-semibold px-6 py-3 rounded-lg w-full">
+                Hubungi Kami
+            </a>
         </div>
     </header>
 
-    <!-- Categories -->
-    <section class="py-12 bg-neutral-light border-b border-custom">
-        <div class="max-w-7xl mx-auto px-6 flex flex-wrap justify-center gap-4">
-            <button class="bg-white border border-custom px-6 py-2 rounded-full shadow-soft hover:text-accent transition-standard">#KecerdasanBuatan</button>
-            <button class="bg-white border border-custom px-6 py-2 rounded-full shadow-soft hover:text-accent transition-standard">#WebDev</button>
-            <button class="bg-white border border-custom px-6 py-2 rounded-full shadow-soft hover:text-accent transition-standard">#Produktiviti</button>
-            <button class="bg-white border border-custom px-6 py-2 rounded-full shadow-soft hover:text-accent transition-standard">#Gadget</button>
-            <button class="bg-white border border-custom px-6 py-2 rounded-full shadow-soft hover:text-accent transition-standard">#CyberSecurity</button>
+    <!-- 2. SEKSYEN HERO -->
+    <section class="relative h-[65vh] min-h-[500px] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://i.postimg.cc/rwQYLv6c/image.png" 
+                 alt="[Imej banner Voltake Energy Services]" 
+                 class="w-full h-full object-cover object-center transform scale-100" />
+        </div>
+        
+        <div class="hero-overlay absolute inset-0 z-10"></div>
+
+        <div class="relative z-20 text-center px-4 fade-up-element w-full max-w-4xl mx-auto mt-16">
+            <h1 class="text-5xl md:text-7xl font-bold font-heading text-white mb-4 tracking-tight drop-shadow-2xl">
+                Pasukan Kami
+            </h1>
+            <div class="flex items-center justify-center gap-2 text-white/90 text-sm md:text-lg font-medium font-heading bg-black/20 backdrop-blur-sm w-fit mx-auto px-6 py-2 rounded-full border border-white/20">
+                <a href="/" class="hover:text-accent transition-colors">Utama</a>
+                <i class="ph ph-caret-right text-xs"></i>
+                <span class="text-accent">Pasukan Kami</span>
+            </div>
         </div>
     </section>
 
-    <!-- Main Content (Blog Posts) -->
-    <main id="articles" class="py-20 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex justify-between items-end mb-12 fade-up-element">
-                <div>
-                    <h2 class="text-3xl text-primary mb-2">Artikel Pilihan</h2>
-                    <div class="w-20 h-1.5 bg-accent rounded-full"></div>
+    <!-- INFO TICKER (BAHAGIAN BARU) -->
+    <div class="bg-primary border-b border-accent/20 py-4 relative z-30 overflow-hidden shadow-lg">
+        <div class="flex whitespace-nowrap animate-marquee items-center">
+            <!-- Ticker Items (Dulang pertama) -->
+            <div class="flex items-center space-x-12 px-6">
+                <div class="flex items-center gap-3">
+                    <i class="ph ph-seal-check text-accent text-xl"></i>
+                    <span class="text-white font-heading font-medium text-sm md:text-base uppercase tracking-wider">Pakar Tenaga Boleh Baharu Terkemuka</span>
                 </div>
-                <a href="#" class="text-primary font-semibold flex items-center gap-1 hover:text-accent transition-standard">
-                    Lihat Semua <i class="ph ph-caret-right"></i>
-                </a>
+                <div class="flex items-center gap-3 border-l border-white/10 pl-12">
+                    <i class="ph ph-users text-accent text-xl"></i>
+                    <span class="text-white font-heading font-medium text-sm md:text-base uppercase tracking-wider">Pasukan Jurutera Bertauliah</span>
+                </div>
+                <div class="flex items-center gap-3 border-l border-white/10 pl-12">
+                    <i class="ph ph-projector-screen text-accent text-xl"></i>
+                    <span class="text-white font-heading font-medium text-sm md:text-base uppercase tracking-wider">100+ Projek Mega Selesai</span>
+                </div>
+                <div class="flex items-center gap-3 border-l border-white/10 pl-12">
+                    <i class="ph ph-clock text-accent text-xl"></i>
+                    <span class="text-white font-heading font-medium text-sm md:text-base uppercase tracking-wider">Sokongan Teknikal 24/7</span>
+                </div>
+                <div class="flex items-center gap-3 border-l border-white/10 pl-12">
+                    <i class="ph ph-globe text-accent text-xl"></i>
+                    <span class="text-white font-heading font-medium text-sm md:text-base uppercase tracking-wider">Standard Antarabangsa ISO 9001</span>
+                </div>
             </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Card 1 -->
-                <article class="group fade-up-element">
-                    <div class="rounded-xl overflow-hidden shadow-soft transition-standard group-hover:shadow-premium bg-white">
-                        <div class="h-48 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80" alt="Imej AI" class="w-full h-full object-cover transition-standard group-hover:scale-110">
-                        </div>
-                        <div class="p-6">
-                            <span class="text-accent text-sm font-bold uppercase mb-2 block">Kecerdasan Buatan</span>
-                            <h3 class="text-xl mb-3 text-primary group-hover:text-accent transition-standard">Bagaimana Generative AI Mengubah Cara Kita Bekerja</h3>
-                            <p class="text-sm mb-6 line-clamp-2">Teknologi AI kini bukan lagi sekadar impian, ia telah menjadi sebahagian daripada ekosistem produktiviti harian kita.</p>
-                            <div class="flex items-center justify-between border-t border-custom pt-4">
-                                <div class="flex items-center gap-2">
-                                    <img src="https://i.pravatar.cc/150?u=1" alt="Profil Penulis" class="w-8 h-8 rounded-full border border-custom">
-                                    <span class="text-xs font-medium">Ahmad Fauzi</span>
-                                </div>
-                                <span class="text-xs text-gray-400">12 Mac 2024</span>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Card 2 -->
-                <article class="group fade-up-element">
-                    <div class="rounded-xl overflow-hidden shadow-soft transition-standard group-hover:shadow-premium bg-white">
-                        <div class="h-48 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" alt="Imej Koding" class="w-full h-full object-cover transition-standard group-hover:scale-110">
-                        </div>
-                        <div class="p-6">
-                            <span class="text-accent text-sm font-bold uppercase mb-2 block">Web Development</span>
-                            <h3 class="text-xl mb-3 text-primary group-hover:text-accent transition-standard">Framework Terbaik Untuk Belajar JavaScript 2024</h3>
-                            <p class="text-sm mb-6 line-clamp-2">Antara React, Vue, dan Svelte, mana satu yang patut anda pilih sebagai pemula dalam dunia web dev?</p>
-                            <div class="flex items-center justify-between border-t border-custom pt-4">
-                                <div class="flex items-center gap-2">
-                                    <img src="https://i.pravatar.cc/150?u=2" alt="Profil Penulis" class="w-8 h-8 rounded-full border border-custom">
-                                    <span class="text-xs font-medium">Siti Aminah</span>
-                                </div>
-                                <span class="text-xs text-gray-400">10 Mac 2024</span>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Card 3 -->
-                <article class="group fade-up-element">
-                    <div class="rounded-xl overflow-hidden shadow-soft transition-standard group-hover:shadow-premium bg-white">
-                        <div class="h-48 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80" alt="Imej Gadget" class="w-full h-full object-cover transition-standard group-hover:scale-110">
-                        </div>
-                        <div class="p-6">
-                            <span class="text-accent text-sm font-bold uppercase mb-2 block">Gadget</span>
-                            <h3 class="text-xl mb-3 text-primary group-hover:text-accent transition-standard">Ulasan Jujur: Adakah Telefon Lipat Masih Relevan?</h3>
-                            <p class="text-sm mb-6 line-clamp-2">Kami menguji ketahanan dan kegunaan skrin boleh lipat dalam tugasan seharian selama sebulan.</p>
-                            <div class="flex items-center justify-between border-t border-custom pt-4">
-                                <div class="flex items-center gap-2">
-                                    <img src="https://i.pravatar.cc/150?u=3" alt="Profil Penulis" class="w-8 h-8 rounded-full border border-custom">
-                                    <span class="text-xs font-medium">Zul Hilmi</span>
-                                </div>
-                                <span class="text-xs text-gray-400">08 Mac 2024</span>
-                            </div>
-                        </div>
-                    </div>
-                </article>
+            <!-- Ticker Items (Dulang kedua untuk loop lancar) -->
+            <div class="flex items-center space-x-12 px-6">
+                <div class="flex items-center gap-3">
+                    <i class="ph ph-seal-check text-accent text-xl"></i>
+                    <span class="text-white font-heading font-medium text-sm md:text-base uppercase tracking-wider">Pakar Tenaga Boleh Baharu Terkemuka</span>
+                </div>
+                <div class="flex items-center gap-3 border-l border-white/10 pl-12">
+                    <i class="ph ph-users text-accent text-xl"></i>
+                    <span class="text-white font-heading font-medium text-sm md:text-base uppercase tracking-wider">Pasukan Jurutera Bertauliah</span>
+                </div>
+                <div class="flex items-center gap-3 border-l border-white/10 pl-12">
+                    <i class="ph ph-projector-screen text-accent text-xl"></i>
+                    <span class="text-white font-heading font-medium text-sm md:text-base uppercase tracking-wider">100+ Projek Mega Selesai</span>
+                </div>
+                <div class="flex items-center gap-3 border-l border-white/10 pl-12">
+                    <i class="ph ph-clock text-accent text-xl"></i>
+                    <span class="text-white font-heading font-medium text-sm md:text-base uppercase tracking-wider">Sokongan Teknikal 24/7</span>
+                </div>
+                <div class="flex items-center gap-3 border-l border-white/10 pl-12">
+                    <i class="ph ph-globe text-accent text-xl"></i>
+                    <span class="text-white font-heading font-medium text-sm md:text-base uppercase tracking-wider">Standard Antarabangsa ISO 9001</span>
+                </div>
             </div>
         </div>
-    </main>
+    </div>
 
-    <!-- CTA Section -->
-    <section class="py-20 px-6 bg-neutral-light">
-        <div class="max-w-4xl mx-auto bg-primary rounded-xl p-8 md:p-16 text-center text-white relative overflow-hidden fade-up-element">
-            <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-                <i class="ph ph-envelope-simple-open absolute -bottom-10 -right-10 text-[200px]"></i>
-            </div>
-            <h2 class="text-3xl md:text-4xl mb-6 relative z-10">Jangan Terlepas Berita Terkini</h2>
-            <p class="mb-10 opacity-80 relative z-10">Sertai 10,000+ pembaca setia kami dan terima artikel terus ke inbox anda setiap hari Isnin.</p>
-            <form class="flex flex-col md:flex-row gap-4 relative z-10 max-w-lg mx-auto">
-                <input type="email" placeholder="Alamat emel anda" class="flex-grow px-6 py-4 rounded-xl text-primary focus:outline-none focus:ring-4 focus:ring-accent/50 transition-standard">
-                <button type="submit" class="bg-accent text-secondary font-bold px-8 py-4 rounded-xl hover:scale-105 transition-standard">Langgan</button>
-            </form>
+    <!-- 3. SEKSYEN INTRO -->
+    <section class="py-24 bg-gray-50 bg-pattern relative">
+        <div class="max-w-4xl mx-auto px-4 text-center fade-up-element">
+            <h2 class="text-3xl md:text-4xl font-heading font-bold text-primary leading-tight">
+                Kenali individu di sebalik <span class="text-accent">Voltake Energy Services</span> yang menjadikannya nama dipercayai dalam industri.
+            </h2>
+            <div class="w-24 h-1 bg-accent mx-auto mt-8 rounded-full"></div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-secondary text-white pt-20 pb-10 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid md:grid-cols-4 gap-12 mb-16">
-                <div class="col-span-1 md:col-span-1">
-                    <div class="flex items-center gap-2 mb-6">
-                        <i class="ph ph-lightning text-accent text-3xl"></i>
-                        <span class="text-xl font-bold font-poppins tracking-tight">TECHBLOG</span>
+    <!-- 4. SEKSYEN PERKHIDMATAN -->
+    <section class="py-24 bg-white relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-up-element">
+                <span class="text-accent font-bold uppercase tracking-wider text-sm">Apa Yang Kami Lakukan</span>
+                <h2 class="text-3xl md:text-4xl font-heading font-bold text-primary mt-2">Kepakaran Teras Kami</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-soft hover:-translate-y-2 transition-all duration-300 group fade-up-element">
+                    <div class="w-16 h-16 rounded-full bg-orange-50 flex items-center justify-center mb-6 group-hover:bg-accent group-hover:text-white text-accent transition-colors duration-300">
+                        <i class="ph ph-solar-panel text-3xl"></i>
                     </div>
-                    <p class="text-sm opacity-60 leading-relaxed">
-                        Platform ilmu teknologi terkemuka di Malaysia. Menyediakan maklumat tepat, pantas dan bermutu tinggi untuk komuniti tech.
+                    <h3 class="text-xl font-bold font-heading text-primary mb-3 leading-snug">Solusi Tenaga Boleh Baharu</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Pemasangan & penyelenggaraan sistem solar, hidroelektrik, dan biogas yang disesuaikan mengikut keperluan anda.
                     </p>
                 </div>
-                <div>
-                    <h4 class="text-lg mb-6">Pautan Pantas</h4>
-                    <ul class="space-y-4 text-sm opacity-70">
-                        <li><a href="#" class="hover:text-accent transition-standard">Hubungi Kami</a></li>
-                        <li><a href="#" class="hover:text-accent transition-standard">Kerjaya</a></li>
-                        <li><a href="#" class="hover:text-accent transition-standard">Privasi & Polisi</a></li>
-                        <li><a href="#" class="hover:text-accent transition-standard">Terma Perkhidmatan</a></li>
-                    </ul>
+
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-soft hover:-translate-y-2 transition-all duration-300 group fade-up-element" style="transition-delay: 100ms;">
+                    <div class="w-16 h-16 rounded-full bg-orange-50 flex items-center justify-center mb-6 group-hover:bg-accent group-hover:text-white text-accent transition-colors duration-300">
+                        <i class="ph ph-chart-line-up text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold font-heading text-primary mb-3 leading-snug">Konsultasi Kecekapan Tenaga</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Audit prestasi, penentukur, dan solusi penjimatan kos untuk mengoptimumkan penggunaan kuasa anda.
+                    </p>
                 </div>
-                <div>
-                    <h4 class="text-lg mb-6">Kategori</h4>
-                    <ul class="space-y-4 text-sm opacity-70">
-                        <li><a href="#" class="hover:text-accent transition-standard">AI & Robotik</a></li>
-                        <li><a href="#" class="hover:text-accent transition-standard">Gajet & Mobile</a></li>
-                        <li><a href="#" class="hover:text-accent transition-standard">Pembangunan Web</a></li>
-                        <li><a href="#" class="hover:text-accent transition-standard">Tips Koding</a></li>
-                    </ul>
+
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-soft hover:-translate-y-2 transition-all duration-300 group fade-up-element" style="transition-delay: 200ms;">
+                    <div class="w-16 h-16 rounded-full bg-orange-50 flex items-center justify-center mb-6 group-hover:bg-accent group-hover:text-white text-accent transition-colors duration-300">
+                        <i class="ph ph-lightning text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold font-heading text-primary mb-3 leading-snug">Servis Kejuruteraan Elektrik</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Reka bentuk menyeluruh, pemasangan, penyelenggaraan, dan sokongan kerosakan 24/7.
+                    </p>
                 </div>
-                <div>
-                    <h4 class="text-lg mb-6">Ikuti Kami</h4>
-                    <div class="flex gap-4">
-                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent transition-standard">
-                            <i class="ph ph-facebook-logo text-xl"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent transition-standard">
-                            <i class="ph ph-twitter-logo text-xl"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent transition-standard">
-                            <i class="ph ph-instagram-logo text-xl"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent transition-standard">
+
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-soft hover:-translate-y-2 transition-all duration-300 group fade-up-element" style="transition-delay: 300ms;">
+                    <div class="w-16 h-16 rounded-full bg-orange-50 flex items-center justify-center mb-6 group-hover:bg-accent group-hover:text-white text-accent transition-colors duration-300">
+                        <i class="ph ph-briefcase text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold font-heading text-primary mb-3 leading-snug">Pengurusan Projek</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Pengendalian projek dari awal hingga akhir, memastikan pematuhan ketat dan pelaksanaan yang sempurna.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. SEKSYEN PASUKAN (Konsep Profil Google Dikemas Kini) -->
+    <section class="py-24 bg-gray-50 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-up-element">
+                <span class="text-accent font-bold uppercase tracking-wider text-sm">Kepimpinan</span>
+                <h2 class="text-3xl md:text-4xl font-heading font-bold text-primary mt-2">Kenali Pakar Kami</h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Ahli 1 - Marcus Vance (Konsep Gaya Google) -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-premium overflow-hidden group fade-up-element border border-gray-100 flex flex-col items-center transition-all duration-300">
+                    <div class="relative w-36 h-36 mb-6">
+                        <!-- Cincin garisan luar -->
+                        <div class="absolute inset-[-6px] rounded-full border-2 border-gray-100 group-hover:border-accent transition-colors duration-300"></div>
+                        <img src="https://i.postimg.cc/PxKgVPty/image.png" alt="[Imej Marcus Vance CEO]" class="w-full h-full object-cover rounded-full shadow-sm">
+                        <!-- Ikon LinkedIn -->
+                        <a href="https://www.linkedin.com" target="_blank" class="absolute bottom-0 right-0 w-10 h-10 rounded-full bg-white text-primary flex items-center justify-center hover:bg-accent hover:text-white transition-colors shadow-md border border-gray-100">
                             <i class="ph ph-linkedin-logo text-xl"></i>
                         </a>
                     </div>
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold font-heading text-primary">Marcus Vance</h3>
+                        <p class="text-accent font-semibold text-sm mb-3">Ketua Pegawai Eksekutif</p>
+                        <p class="text-gray-600 text-sm">Memacu inovasi dan mengemudi visi strategik Voltake.</p>
+                    </div>
+                </div>
+
+                <!-- Ahli 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-premium overflow-hidden group fade-up-element border border-gray-100 flex flex-col items-center transition-all duration-300" style="transition-delay: 100ms;">
+                    <div class="relative w-36 h-36 mb-6">
+                        <div class="absolute inset-[-6px] rounded-full border-2 border-gray-100 group-hover:border-accent transition-colors duration-300"></div>
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1976&auto=format&fit=crop" alt="[Imej Ahli Pasukan]" class="w-full h-full object-cover rounded-full shadow-sm">
+                        <a href="#" class="absolute bottom-0 right-0 w-10 h-10 rounded-full bg-white text-primary flex items-center justify-center hover:bg-accent hover:text-white transition-colors shadow-md border border-gray-100">
+                            <i class="ph ph-linkedin-logo text-xl"></i>
+                        </a>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold font-heading text-primary">Elena Rodriguez</h3>
+                        <p class="text-accent font-semibold text-sm mb-3">Ketua Kejuruteraan</p>
+                        <p class="text-gray-600 text-sm">Menyelia pelaksanaan teknikal dan reka bentuk elektrik termaju.</p>
+                    </div>
+                </div>
+
+                <!-- Ahli 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-premium overflow-hidden group fade-up-element border border-gray-100 flex flex-col items-center transition-all duration-300" style="transition-delay: 200ms;">
+                    <div class="relative w-36 h-36 mb-6">
+                        <div class="absolute inset-[-6px] rounded-full border-2 border-gray-100 group-hover:border-accent transition-colors duration-300"></div>
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1974&auto=format&fit=crop" alt="[Imej Ahli Pasukan]" class="w-full h-full object-cover rounded-full shadow-sm">
+                        <a href="#" class="absolute bottom-0 right-0 w-10 h-10 rounded-full bg-white text-primary flex items-center justify-center hover:bg-accent hover:text-white transition-colors shadow-md border border-gray-100">
+                            <i class="ph ph-linkedin-logo text-xl"></i>
+                        </a>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold font-heading text-primary">James Chen</h3>
+                        <p class="text-accent font-semibold text-sm mb-3">Pengarah Projek</p>
+                        <p class="text-gray-600 text-sm">Memastikan semua pemasangan kami dihantar dengan sempurna dan selamat.</p>
+                    </div>
+                </div>
+
+                <!-- Ahli 4 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-premium overflow-hidden group fade-up-element border border-gray-100 flex flex-col items-center transition-all duration-300" style="transition-delay: 300ms;">
+                    <div class="relative w-36 h-36 mb-6">
+                        <div class="absolute inset-[-6px] rounded-full border-2 border-gray-100 group-hover:border-accent transition-colors duration-300"></div>
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format&fit=crop" alt="[Imej Ahli Pasukan]" class="w-full h-full object-cover rounded-full shadow-sm">
+                        <a href="#" class="absolute bottom-0 right-0 w-10 h-10 rounded-full bg-white text-primary flex items-center justify-center hover:bg-accent hover:text-white transition-colors shadow-md border border-gray-100">
+                            <i class="ph ph-linkedin-logo text-xl"></i>
+                        </a>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold font-heading text-primary">Sarah Jenkins</h3>
+                        <p class="text-accent font-semibold text-sm mb-3">Perunding Kecekapan</p>
+                        <p class="text-gray-600 text-sm">Membantu pelanggan memaksimumkan prestasi sambil meminimumkan kos.</p>
+                    </div>
                 </div>
             </div>
-            <div class="border-t border-white/10 pt-8 text-center text-xs opacity-40">
-                &copy; 2024 TechBlog Malaysia. Hak Cipta Terpelihara.
+        </div>
+    </section>
+
+    <!-- 6. SEKSYEN CTA -->
+    <section class="py-24 bg-primary relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-80 h-80 bg-accent/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
+        
+        <div class="max-w-4xl mx-auto px-4 text-center relative z-10 fade-up-element">
+            <h2 class="text-4xl md:text-5xl font-heading font-bold text-white mb-8">
+                Siap sedia untuk memacu masa depan anda bersama kami?
+            </h2>
+            <p class="text-gray-300 mb-10 text-lg max-w-2xl mx-auto">
+                Rakan kongsi dengan Voltake Energy Services untuk membina solusi tenaga yang mampan, cekap, dan dipercayai untuk perniagaan anda.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 flex-wrap">
+                <a href="https://wa.me/60123456789" target="_blank" class="w-full sm:w-auto inline-block bg-accent text-primary font-heading font-bold text-lg px-8 py-4 rounded-xl hover:bg-yellow-400 hover:shadow-[0_0_20px_rgba(245,166,35,0.4)] hover:-translate-y-1 transition-all duration-300">
+                    Hubungi Kami Sekarang
+                </a>
+                
+                <a href="https://drive.google.com/file/d/1ajw-hFq8S7G0z1VO5tBrwFa9q71nSz_h/view?usp=drive_link" target="_blank" class="w-full sm:w-auto inline-block border-2 border-accent text-accent font-heading font-bold text-lg px-8 py-4 rounded-xl hover:bg-accent hover:text-primary transition-all duration-300">
+                    Jemput Lawatan Tapak
+                </a>
+
+                <a href="https://www.google.com/maps/place/Mudio+Studio/@6.2741773,100.4014305,866m/data=!3m2!1e3!4b1!4m6!3m5!1s0x304b591dd46f0ee1:0x9a5633d99e92658a!8m2!3d6.2741773!4d100.4040054!16s%2Fg%2F11srrtsm0m?entry=ttu&g_ep=EgoyMDI2MDQwNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="w-full sm:w-auto inline-block border-2 border-white text-white font-heading font-bold text-lg px-8 py-4 rounded-xl hover:bg-white hover:text-primary transition-all duration-300">
+                    Lihat Lokasi
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. FOOTER -->
+    <footer class="bg-[#051c2c] pt-20 pb-8 border-t-4 border-accent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                
+                <div>
+                    <a href="#" class="flex items-center gap-2 mb-6">
+                        <i class="ph ph-lightning text-3xl text-accent"></i>
+                        <span class="text-2xl font-bold font-heading text-white tracking-wide">VOLTAKE</span>
+                    </a>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Menerajui solusi tenaga boleh baharu dan perkhidmatan kejuruteraan elektrik pakar. Memacu masa depan yang mampan, hari ini.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded bg-white/5 flex items-center justify-center text-white hover:bg-accent hover:text-primary transition-colors"><i class="ph ph-facebook-logo text-xl"></i></a>
+                        <a href="#" class="w-10 h-10 rounded bg-white/5 flex items-center justify-center text-white hover:bg-accent hover:text-primary transition-colors"><i class="ph ph-twitter-logo text-xl"></i></a>
+                        <a href="https://www.linkedin.com" target="_blank" class="w-10 h-10 rounded bg-white/5 flex items-center justify-center text-white hover:bg-accent hover:text-primary transition-colors"><i class="ph ph-linkedin-logo text-xl"></i></a>
+                        <a href="#" class="w-10 h-10 rounded bg-white/5 flex items-center justify-center text-white hover:bg-accent hover:text-primary transition-colors"><i class="ph ph-instagram-logo text-xl"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-heading font-bold text-lg mb-6 relative inline-block">
+                        Pautan Pantas
+                        <span class="absolute -bottom-2 left-0 w-1/2 h-0.5 bg-accent"></span>
+                    </h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-accent transition-colors flex items-center gap-2"><i class="ph ph-caret-right text-accent text-xs"></i> Tentang Kami</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-accent transition-colors flex items-center gap-2"><i class="ph ph-caret-right text-accent text-xs"></i> Projek Kami</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-accent transition-colors flex items-center gap-2"><i class="ph ph-caret-right text-accent text-xs"></i> Berita Terkini</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-accent transition-colors flex items-center gap-2"><i class="ph ph-caret-right text-accent text-xs"></i> Kerjaya</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-accent transition-colors flex items-center gap-2"><i class="ph ph-caret-right text-accent text-xs"></i> Sokongan Hubungi</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-heading font-bold text-lg mb-6 relative inline-block">
+                        Perkhidmatan Kami
+                        <span class="absolute -bottom-2 left-0 w-1/2 h-0.5 bg-accent"></span>
+                    </h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-accent transition-colors flex items-center gap-2"><i class="ph ph-caret-right text-accent text-xs"></i> Tenaga Boleh Baharu</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-accent transition-colors flex items-center gap-2"><i class="ph ph-caret-right text-accent text-xs"></i> Audit Tenaga</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-accent transition-colors flex items-center gap-2"><i class="ph ph-caret-right text-accent text-xs"></i> Kejuruteraan Elektrik</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-accent transition-colors flex items-center gap-2"><i class="ph ph-caret-right text-accent text-xs"></i> Pengurusan Projek</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-accent transition-colors flex items-center gap-2"><i class="ph ph-caret-right text-accent text-xs"></i> Penyelenggaraan</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-heading font-bold text-lg mb-6 relative inline-block">
+                        Info Hubungi
+                        <span class="absolute -bottom-2 left-0 w-1/2 h-0.5 bg-accent"></span>
+                    </h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i class="ph ph-map-pin text-accent text-xl mt-1"></i>
+                            <a href="https://www.google.com/maps/place/Mudio+Studio/@6.2741773,100.4014305,866m/data=!3m2!1e3!4b1!4m6!3m5!1s0x304b591dd46f0ee1:0x9a5633d99e92658a!8m2!3d6.2741773!4d100.4040054!16s%2Fg%2F11srrtsm0m?entry=ttu&g_ep=EgoyMDI2MDQwNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="text-gray-400 text-sm hover:text-accent transition-colors">
+                                Mudio Studio,<br>Jitra, Kedah
+                            </a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="ph ph-phone text-accent text-xl"></i>
+                            <span class="text-gray-400 text-sm">+1 (555) 123-4567</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="ph ph-envelope-simple text-accent text-xl"></i>
+                            <span class="text-gray-400 text-sm">hello@voltake.com</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="ph ph-clock text-accent text-xl"></i>
+                            <span class="text-gray-400 text-sm">Isn - Jum: 8:00 AM - 6:00 PM</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+                <p class="text-gray-500 text-sm">
+                    &copy; 2026 Voltake Energy Services. Hak cipta terpelihara.
+                </p>
+                <div class="flex gap-4 text-sm text-gray-500">
+                    <a href="#" class="hover:text-accent transition-colors">Dasar Privasi</a>
+                    <span>|</span>
+                    <a href="#" class="hover:text-accent transition-colors">Terma Perkhidmatan</a>
+                </div>
             </div>
         </div>
     </footer>
 
+    <!-- JavaScript Interaktif -->
     <script>
-        // Intersection Observer for Fade-Up Animation
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: "0px 0px -50px 0px"
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    // Optional: stop observing once shown
-                    // observer.unobserve(entry.target);
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Gaya Navbar melekit semasa skrol
+            const navbar = document.getElementById('navbar');
+            const handleScroll = () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('nav-scrolled');
+                } else {
+                    navbar.classList.remove('nav-scrolled');
                 }
+            };
+            window.addEventListener('scroll', handleScroll);
+            handleScroll(); 
+
+            // 2. Togol Menu Mudah Alih
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const closeMenuBtn = document.getElementById('close-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.add('mobile-menu-active');
             });
-        }, observerOptions);
 
-        document.querySelectorAll('.fade-up-element').forEach(el => {
-            observer.observe(el);
-        });
+            closeMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.remove('mobile-menu-active');
+            });
 
-        // Simple smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                document.querySelector(targetId).scrollIntoView({
-                    behavior: 'smooth'
+            // 3. Animasi Skrol (Intersection Observer)
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); 
+                    }
                 });
-            });
+            }, observerOptions);
+
+            const fadeUpElements = document.querySelectorAll('.fade-up-element');
+            fadeUpElements.forEach(el => observer.observe(el));
         });
     </script>
 </body>
